@@ -7,7 +7,9 @@
   <body>
     <div class="container">
       <h1>User login</h1>
-      <br>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
       <form action="" method="post">
         <input type="text" placeholder="Username" name="username" value="{{
           request.form.username }}">
@@ -15,9 +17,6 @@
           request.form.password }}">
         <input class="btn btn-default" type="submit" value="Login">
       </form>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ message }}
-      {% endif %}
     </div>
   </body>
 </html>

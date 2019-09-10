@@ -16,6 +16,7 @@ class Users(Base):
 class UserDetails(Base):
   __tablename__ = 'user_details'
   id = Column(Integer, primary_key=True)
+  user_name = Column(String(50)) 
   user_id = Column(Integer, ForeignKey('users.id'))
   user_role = Column(String(50))
   subject_teacher = Column(String(50))

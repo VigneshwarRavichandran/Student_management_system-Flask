@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dashboard</h1>
+      {% if details["user_role"] == "admin" %}
+        <div>
+          admin
+        </div>
+      {% elif details["user_role"] == 'teacher' %}
+        <div>
+          Class Teacher : {{ details["class_teacher"] }} <br>
+          Subject Teacher : {{ details["subject_teacher"] }}
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
