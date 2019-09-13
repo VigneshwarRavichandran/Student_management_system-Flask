@@ -1,19 +1,41 @@
 # *Student Management Student*
-**Student Details:**
-
- - Student can view and edit.
-
-**Mark Details:**
-
- - Student can only view.
- - Staff can view and edit.
 
 
-**Register:**
+**College**
 
- - Student doesn't have access over it.
- - Staff can only register students.
+ - Name
+ - Location
 
-**Login:**
 
- - Separate login for student, staff and admin.
+
+**Department**
+
+ - ID
+ - Name
+
+
+
+**Subject**
+
+ - ID
+ - Name
+ - Department ID
+
+
+
+**Professor**
+
+ - ID
+ - Name
+ - Subject ID
+
+
+
+**Student**
+
+ - ID
+ - Name
+ - Department ID
+
+
+ 
