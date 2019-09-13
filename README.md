@@ -1,4 +1,8 @@
-## *Student Management Student*
+# **Student Management Student**
+
+
+
+## *Models*
 
 
 **College**
@@ -38,3 +42,26 @@
  - Department ID
 
 
+
+
+## *Actors and Actions*
+
+
+**Professor**
+
+ - View all his students
+
+
+
+**Student**
+
+ - View all his subjects
+ - View all his professors
+
+
+
+## *Endpoints*
+
+
+ - Login
+ - Profile
