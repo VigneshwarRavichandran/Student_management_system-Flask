@@ -6,20 +6,36 @@ engine = create_engine("mysql://root:1998@localhost/student_management",echo = T
 Base = declarative_base()
 session = Session(engine)
 
+class College(Base):
+  __tablename__ = 'college'
+  id = Column(Integer, primary_key=True)
+  name = Column(String(50)) 
+  location = Column(Text)
+
+class Departments(Base):
+  __tablename__ = 'departments'
+  id = Column(Integer, primary_key=True)
+  name = Column(String(50))
+
+class Subjects(Base):
+  __tablename__ = 'subjects'
+  id = Column(String(50), primary_key=True)
+  name = Column(Text)
+  department_id = Column(Integer)
+
 class Users(Base):
   __tablename__ = 'users'
-  id = Column(Integer, primary_key=True)
-  username = Column(String(50))
-  password = Column(String(50))
-  details = relationship("UserDetails")
+  id = Column(String(50), primary_key=True)
+  encrypted_data = Column(Text)
 
-class UserDetails(Base):
-  __tablename__ = 'user_details'
-  id = Column(Integer, primary_key=True)
-  user_name = Column(String(50)) 
-  user_id = Column(Integer, ForeignKey('users.id'))
-  user_role = Column(String(50))
-  subject_teacher = Column(String(50))
-  class_teacher = Column(String(50), unique=True)
-  student_mark = Column(Integer)
-  student_class = Column(String(50))
+class Professors(Base):
+  __tablename__ = 'professors'
+  id = Column(String(50), primary_key=True)
+  name = Column(Text)
+  subject_id = Column(String(50))
+
+class Students(Base):
+  __tablename__ = 'students'
+  id = Column(String(50), primary_key=True)
+  name = Column(Text)
+  department_id = Column(Integer)
