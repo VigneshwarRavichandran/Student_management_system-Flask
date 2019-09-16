@@ -27,6 +27,13 @@
 
 
 
+**Users**
+
+ - ID
+ - Hashed Password
+
+
+
 **Professor**
 
  - ID
