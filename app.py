@@ -50,12 +50,10 @@ def login():
 def profile():
 	if request.method == 'GET':
 		token = request.headers['token']
-		data = get_data(token)
-		hashed = request.get_json()
-		return jsonify({
-			'data' : data,
-			'hashed' : hashed
-			})
+		userid = get_data(token)
+		data = request.get_json()
+		action = data['action']
+		return jsonify({"message": "ERROR: Unauthorized"}), 401
 
 if __name__ == '__main__':
 	app.run(debug=True)

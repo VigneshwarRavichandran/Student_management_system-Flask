@@ -45,4 +45,4 @@ def get_token(userid):
 def get_data(token):
 	access_token = token.encode('utf-8')
 	data = jwt.decode(access_token, 'secret')
-	return data
+	return data['userid']
