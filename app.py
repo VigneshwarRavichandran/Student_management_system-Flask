@@ -35,10 +35,9 @@ def login():
 	if user:
 		hashed_password = user.encrypted_data
 		if verify_user(password, hashed_password):
-			access_token = jwt.encode({'userid' : userid}, 'secret', algorithm='HS256')
-			token = access_token.decode('utf-8')
+			token = get_token(userid)
 			return jsonify({
-			  'auth_token' : token
+				'token' : token
 			  })
 		return jsonify({
 			'message' : 'Incorrect Password'
@@ -48,9 +47,15 @@ def login():
 		})
 
 @app.route('/profile', methods=['POST', 'GET'])
-def user(userid):
-	details = get_details(userid)
-	return render_template('user.html', details=details)
+def profile():
+	if request.method == 'GET':
+		token = request.headers['token']
+		data = get_data(token)
+		hashed = request.get_json()
+		return jsonify({
+			'data' : data,
+			'hashed' : hashed
+			})
 
 if __name__ == '__main__':
 	app.run(debug=True)
