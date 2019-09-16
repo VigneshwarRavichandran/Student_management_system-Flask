@@ -46,3 +46,35 @@ def get_data(token):
 	access_token = token.encode('utf-8')
 	data = jwt.decode(access_token, 'secret')
 	return data['userid']
+
+def get_professor(userid):
+	professor = session.query(Professors).filter_by(id=userid).first()
+	if professor:
+		return professor
+	return False
+
+def get_student(userid):
+	student = session.query(Students).filter_by(id=userid).first()
+	if student:
+		return student
+	return False
+
+def get_all_students(professor):
+	subject_id = professor.subject_id
+	department_id = session.query(Subjects.department_id).filter_by(id=subject_id).first()
+	students = session.query(Students.id, Students.name).filter_by(department_id=department_id).all()
+	return students
+
+def get_all_subjects(student):
+	department_id = student.department_id
+	subjects = session.query(Subjects.id, Subjects.name).filter_by(department_id=department_id).all()
+	return subjects
+
+def get_all_professors(student):
+	department_id = student.department_id
+	subjects = session.query(Subjects.id).filter_by(department_id=department_id).all()
+	professors = []
+	for subject in subjects:
+		professor = session.query(Professors.name, Professors.subject_id).filter_by(subject_id=subject).first()
+		professors.append(professor)
+	return professors
