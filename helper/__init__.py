@@ -28,7 +28,7 @@ def get_user(userid):
 		return user
 	return False
 
-def encrypt_paddword(password):
+def encrypt_password(password):
 	hashed_password = sha256_crypt.encrypt(password)
 	return hashed_password
 
@@ -60,8 +60,7 @@ def get_student(userid):
 	return False
 
 def get_all_students(professor):
-	subject_id = professor.subject_id
-	department_id = session.query(Subjects.department_id).filter_by(id=subject_id).first()
+	department_id = professor.subject.department_id
 	students = session.query(Students.id, Students.name).filter_by(department_id=department_id).all()
 	return students
 
@@ -72,9 +71,10 @@ def get_all_subjects(student):
 
 def get_all_professors(student):
 	department_id = student.department_id
-	subjects = session.query(Subjects.id).filter_by(department_id=department_id).all()
-	professors = []
-	for subject in subjects:
-		professor = session.query(Professors.name, Professors.subject_id).filter_by(subject_id=subject).first()
-		professors.append(professor)
-	return professors
+	subjects = session.query(Subjects).filter_by(department_id=department_id).all()
+	professors = session.query(Professors).all()
+	student_professors = []
+	for professor in professors:
+		if professor.subject in subjects:
+			student_professors.append({ 'Professor Name' : professor.name, 'Subject' : professor.subject.name})
+	return student_professors

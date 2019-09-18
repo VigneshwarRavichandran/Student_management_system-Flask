@@ -12,7 +12,7 @@ def register():
 	user_role = data['role']
 	# Password encryption
 	hashed_password = encrypt_password(password)
-	user_exist = get_check(userid)
+	user_exist = get_user(userid)
 	# Check for user existence
 	if not user_exist:
 		if user_role == 'professor':
