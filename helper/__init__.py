@@ -38,13 +38,15 @@ def verify_user(password, hashed_password):
 	return False
 
 def get_token(userid):
-	access_token = jwt.encode({'userid' : userid}, 'secret', algorithm='HS256')
+	secret_key = os.getenv('SECRET_KEY')
+	access_token = jwt.encode({'userid' : userid}, secret_key, algorithm='HS256')
 	token = access_token.decode('utf-8')
 	return token
 
 def get_data(token):
 	access_token = token.encode('utf-8')
-	data = jwt.decode(access_token, 'secret')
+	secret_key = os.getenv('SECRET_KEY')
+	data = jwt.decode(access_token, secret_key)
 	return data['userid']
 
 def get_professor(userid):

@@ -1,8 +1,16 @@
 from sqlalchemy import create_engine, Table, Column, Integer, ForeignKey, String, Text, DateTime
 from sqlalchemy.orm import relationship, Session
 from sqlalchemy.ext.declarative import declarative_base
+from dotenv import load_dotenv
+import os
 
-engine = create_engine("mysql://root:1998@localhost/student_management",echo = True)
+APP_ROOT = os.path.join(os.path.dirname(__file__), '..')
+dotenv_path = os.path.join(APP_ROOT, '.env')
+load_dotenv(dotenv_path)
+
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
+engine = create_engine("mysql://{0}:{1}@localhost/student_management".format(db_user, db_password),echo = True)
 Base = declarative_base()
 session = Session(engine)
 
