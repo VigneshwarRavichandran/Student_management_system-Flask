@@ -34,7 +34,7 @@ def register():
 
 	except KeyError:
 		return jsonify({
-			'message' : 'Something went Wrong!'
+			'message' : 'Something went wrong!'
 			})
 
 @app.route('/login', methods=['POST'])
@@ -64,7 +64,7 @@ def login():
 		
 	except KeyError:
 		return jsonify({
-			'message' : 'Something went Wrong!'
+			'message' : 'Something went wrong!'
 			})
 
 @app.route('/profile', methods=['POST', 'GET'])
@@ -105,7 +105,7 @@ def profile():
 		
 		except KeyError:
 			return jsonify({
-				'message' : 'Something went Wrong!'
+				'message' : 'Something went wrong!'
 				})			
 
 if __name__ == '__main__':
